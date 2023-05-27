@@ -1,0 +1,30 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 9;
+
+  &__content {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 48px;
+    align-items: center;
+
+    h1 {
+      font-size: $font-xlg;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+
+      span {
+        font-weight: $font-normal;
+        margin-left: 5px;
+      }
+    }
+  }
+}

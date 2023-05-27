@@ -1,0 +1,68 @@
+.card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: $white;
+  border-radius: 4px;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 16px;
+    cursor: pointer;
+    animation: dangling ease-in 5s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+  }
+
+  &__image {
+    width: 100%;
+    height: 150px;
+  }
+
+  &__image img {
+    height: 100%;
+    width: 100%;
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &__content {
+    padding: 8px 16px;
+    margin-bottom: 10px;
+
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: $font-xxlg;
+      font-weight: $font-bold;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    p span {
+      margin-right: 4px;
+      font-weight: $font-semi-bold;
+    }
+  }
+}
+
+@keyframes dangling {
+  0% {
+    transform: translate(1px, -20px);
+  }
+  25% {
+    transform: translate(1px, -10px);
+  }
+  50% {
+    transform: translate(1px, -20px);
+  }
+}

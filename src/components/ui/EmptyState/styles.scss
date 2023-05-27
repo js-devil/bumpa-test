@@ -1,0 +1,32 @@
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__image {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__content {
+    text-align: center;
+    margin: 3rem 0;
+
+    h1 {
+      font-size: $font-xxlg;
+      font-weight: $font-bold;
+    }
+
+    p {
+      font-size: $font-lg;
+      padding: 0.7rem 0;
+    }
+
+    button {
+      background: $blue;
+      color: $white;
+      font-size: $font-lg;
+    }
+  }
+}

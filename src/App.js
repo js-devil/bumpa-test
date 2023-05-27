@@ -1,23 +1,38 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Loader from './components/Loader';
-import NotFound from './components/NotFound';
+import React, { Suspense, useReducer } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-const HomePage = React.lazy(() => import('./views/home'));
-const Country = React.lazy(() => import('./views/country'));
+import Loader from './components/ui/Loader';
+import routes from './routes';
+import NotFound from './views/not-found';
+
+// Context API
+import reducer from './store/reducer';
+import { storeData } from './store';
+
+export const AppContext = React.createContext();
 
 function App() {
+  const [storeDataValue, dispatch] = useReducer(reducer, storeData);
+
   return (
     <Suspense fallback={<Loader />}>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" Component={HomePage} />
-          <Route path="/country/:countryName" Component={Country} />
+      <AppContext.Provider value={{ storeDataValue, dispatch }}>
+        <Router>
+          <Routes>
+            {routes.map(({ path, name, exact, component: routeComp }) => (
+              <Route
+                key={path}
+                exact={exact || false}
+                Component={routeComp}
+                path={path}
+              />
+            ))}
 
-          {/* unavailable pages will redirect to this */}
-          <Route path="*" Component={NotFound} />
-        </Routes>
-      </BrowserRouter>
+            {/* Handles 404 - Not Found */}
+            <Route path="*" Component={NotFound} />
+          </Routes>
+        </Router>
+      </AppContext.Provider>
     </Suspense>
   );
 }
